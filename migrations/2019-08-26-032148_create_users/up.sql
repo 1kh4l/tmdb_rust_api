@@ -1,8 +1,9 @@
 -- Your SQL goes here
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
-  name VARCHAR NOT NULL,
-  bio TEXT NOT NULL,
-  age INTEGER NOT NULL,
-  image_url VARCHAR NOT NULL
+  username VARCHAR NOT NULL,
+  first_name VARCHAR NOT NULL,
+  second_name VARCHAR NOT NULL,
+  last_name VARCHAR NOT NULL,
+  birth_date VARCHAR NOT NULL
 );
