@@ -8,19 +8,21 @@ use super::schema::users::dsl::users as all_users;
 #[derive(Serialize, Queryable, Debug, Clone)]
 pub struct User {
     pub id: i32,
-    pub name: String,
-    pub bio: String,
-    pub age: i32,
-    pub image_url: String,
+    pub user_name: String,
+    pub first_name: String,
+    pub second_name: String,
+    pub last_name: String,
+    pub birth_date: String
 }
 
 #[derive(Serialize, Deserialize, Insertable)]
 #[table_name = "users"]
 pub struct NewUser {
-    pub name: String,
-    pub bio: String,
-    pub age: i32,
-    pub image_url: String,
+    pub user_name: String,
+    pub first_name: String,
+    pub second_name: String,
+    pub last_name: String,
+    pub birth_date: String
 }
 
 impl User {
@@ -46,14 +48,15 @@ impl User {
     // Updating user.
     pub fn update_by_id(id: i32, user: NewUser, conn: &PgConnection) -> bool {
         use super::schema::users::dsl::{
-            name as n,
-            bio as b,
-            age as k,
-            image_url as img,
+            user_name as us_n,
+            first_name as f_n,
+            second_name as s_n,
+            last_name as l_n,
+            birth_date as b_d
         };
-        let NewUser { name, bio, age, image_url } = user;
+        let NewUser { user_name, first_name, second_name, last_name, birth_date } = user;
         diesel::update(all_users.find(id))
-            .set((n.eq(name), b.eq(bio), k.eq(age), img.eq(image_url)))
+            .set((us_n.eq(user_name), f_n.eq(first_name), s_n.eq(second_name), l_n.eq(last_name), b_d.eq(birth_date)))
             .get_result::<User>(conn)
             .is_ok()
     }

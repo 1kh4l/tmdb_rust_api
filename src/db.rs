@@ -8,6 +8,7 @@ use rocket::{Outcome, Request, State};
 use std::env;
 use std::ops::Deref;
 
+/// Database pool used for maintaining an open connection between app && DB.
 pub type Pool = r2d2::Pool<ConnectionManager<PgConnection>>;
 
 pub fn create_db_pool() -> Pool {
@@ -21,6 +22,8 @@ pub struct DbConn(pub r2d2::PooledConnection<ConnectionManager<PgConnection>>);
 
 impl <'a, 'r> FromRequest<'a, 'r> for DbConn {
     type Error = ();
+
+    /// Allow us to verify the pool existence while performing requests to the DB.
     fn from_request(request: &'a Request<'r>) -> request::Outcome<DbConn, ()> {
         let pool = request.guard::<State<Pool>>()?;
         match pool.get() {

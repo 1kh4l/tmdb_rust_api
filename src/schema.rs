@@ -1,9 +1,10 @@
 table! {
     users (id) {
         id -> Int4,
-        name -> Varchar,
-        bio -> Text,
-        age -> Int4,
-        image_url -> Varchar,
+        user_name -> Varchar,
+        first_name -> Varchar,
+        second_name -> Varchar,
+        last_name -> Varchar,
+        birth_date -> Varchar,
     }
 }
