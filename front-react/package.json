@@ -14,6 +14,7 @@
   "author": "Jhon Pantoja ~ 1kh4l",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.19.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-scripts": "3.1.1"
