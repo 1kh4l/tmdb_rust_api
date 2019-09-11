@@ -21,7 +21,7 @@ pub struct Query;
 
 graphql_object!(Query:Context |&self| {
     field getMovies(&executor) -> FieldResult<MoviesResponse> {
-        match api_github() {
+        match fetch_popular_movies() {
             Err(e) => Ok(MoviesResponse{page: 0, results: None, total_pages: 0, total_results: 0}),
             Ok(movies) => Ok(movies),
         }
