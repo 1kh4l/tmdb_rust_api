@@ -1,21 +1,23 @@
 [package]
-name = "tmdb_rust_react"
+name = "tmdb_rust_api"
 version = "0.1.0"
 authors = ["1kh4l <jhon.pantoja@correounivalle.edu.co>"]
 edition = "2018"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
-diesel = { version = "1.2.2", features = ["postgres"] }
-dotenv = "0.11.0"
-r2d2 = "0.8.2"
-r2d2-diesel = "1.0.0"
-serde = "1.0.43"
-serde_derive = "1.0.43"
-serde_json = "1.0.16"
-rocket = "0.4.2"
-rocket_cors = "0.5.0"
-rocket_contrib = "0.4.2"
-reqwest = "0.9.20"
-juniper = "0.11"
+warp= "0.1.13"
+log = "0.4"
+pretty_env_logger = "0.3"
+juniper = "0.11.1"
+diesel = { version = "1.4.1", features = [ "postgres", "chrono" ] }
+dotenv = "0.13.0"
+chrono = "0.4.6"
+serde_json = "1.0.38"
+serde_derive = "1.0.88"
+failure = "0.1.5"
+futures = "0.1.25"
+serde = "1.0.88"
+tokio-threadpool = "0.1.11"
+bcrypt = "0.3.0"
+jsonwebtoken = "5.0.1"
+reqwest = "=0.9.17"
