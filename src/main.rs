@@ -7,6 +7,13 @@ extern crate r2d2_diesel;
 #[macro_use] extern crate rocket_contrib;
 extern crate rocket_cors;
 
+// Request an api.
+#[macro_use]
+extern crate serde_derive;
+extern crate reqwest;
+use reqwest::Error;
+
+use crate::consume_api::api_github;
 use rocket::http::Method;
 use rocket_cors::{AllowedOrigins, AllowedHeaders};
 
@@ -16,6 +23,7 @@ mod db;
 mod models;
 mod routes;
 mod schema;
+mod consume_api;
 
 fn rocket() -> rocket::Rocket {
     let pool = db::create_db_pool();
@@ -30,6 +38,11 @@ fn rocket() -> rocket::Rocket {
         allow_credentials: true,
         ..Default::default()
     };
+    // api_github().ok();
+    match api_github() {
+        Err(e) => println!("{:?}", e),
+        _ => ()
+    }
     rocket::ignite()
         .manage(pool)
         .mount("/api", routes![all_users, new_user, update_user, delete_user])
