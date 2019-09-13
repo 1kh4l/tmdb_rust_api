@@ -1,10 +1,13 @@
 table! {
-    users (id) {
+    myusers (id) {
         id -> Int4,
-        user_name -> Varchar,
+        email -> Varchar,
         first_name -> Varchar,
-        second_name -> Varchar,
         last_name -> Varchar,
-        birth_date -> Varchar,
+        password -> Varchar,
+        bio -> Nullable<Text>,
+        avatar -> Nullable<Varchar>,
+        created_at -> Timestamptz,
+        updated_at -> Timestamptz,
     }
 }
